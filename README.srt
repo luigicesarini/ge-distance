@@ -1,5 +1,5 @@
 # GE-Distance
-
+-----
 The ge-distance package builds upon the graph ensemble package, a project by a project by [Leonardo Niccolò Ialongo](https://datasciencephd.eu/students/leonardo-niccol%C3%B2-ialongo/) and [Emiliano Marchese](https://www.imtlucca.it/en/emiliano.marchese/), under the supervision of [Diego Garlaschelli](https://networks.imtlucca.it/people/diego), which contains a set of methods to build fitness based graph ensembles from marginal information.
 
 The graph-ensemble repository can be found at:
@@ -9,11 +9,11 @@ The graph-ensemble repository can be found at:
 
 
 ## Project Description
-
+-----
 This project aims at reproducing a firm-to-firm network for the entire italian country, introducing the distance as a property that influences the construction of such network.
 
 ## TODO List
-
+-----
 List of the taks envisioned for bringing to completion the project:
 
 [  ] _Introducing the distance as dyadic properties_  
@@ -21,7 +21,7 @@ List of the taks envisioned for bringing to completion the project:
 [  ]
 
 ## Features
-
+-----
 The repository contains a module, __distance__, where starting from the locations of the firms, compute the distance matrix among firms, in two steps:
 
 1. Discretize the interested area, dividing it into square with similar firm density inside based on a [quadtree](https://en.wikipedia.org/wiki/Quadtree) approach. (LINK TO EXAMPLE IMAGE)
@@ -39,11 +39,11 @@ MISSING THE NUMBER OF EMPLOY PER FIRM that I will add to the input.
 
 
 ## Installation
-
+-----
 TO COMPLETE ONCE FINISHED
 
 **Clone the repository**
-
+-----
 .. code-block:: bash
 
     git clone https://github.com/lcesarini/ge-distance.git
@@ -51,7 +51,7 @@ TO COMPLETE ONCE FINISHED
 
 
 ## Usage
-
+-----
 Some examples to put
 
 .. code-block:: python
@@ -59,13 +59,13 @@ Some examples to put
     python your_script.py --arg1 value --arg2 value
 
 ## Contributing
-
+-----
 All the commit,pull, merge stuff that are unnecessary now.
 
 ## License
-
+-----
 This project is licensed under the GNU GENERAL PUBLIC LICENSE License. See the [LICENSE](https://github.com/luigicesarini/ge-distance/blob/master/LICENSE.txt) file for more details. 
 
 ## Contact
-
+-----
 Research center emails, personal, and what not
