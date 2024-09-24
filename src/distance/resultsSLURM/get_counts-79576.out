@@ -1,0 +1,34 @@
+start of job
+eliminating results slurm older than 11 days
+2024-09-10 17:38:39
+/mnt/beegfs/lcesarini/ge-distance/src/distance
+no change     /apps/miniconda3/condabin/conda
+no change     /apps/miniconda3/bin/conda
+no change     /apps/miniconda3/bin/conda-env
+no change     /apps/miniconda3/bin/activate
+no change     /apps/miniconda3/bin/deactivate
+no change     /apps/miniconda3/etc/profile.d/conda.sh
+no change     /apps/miniconda3/etc/fish/conf.d/conda.fish
+no change     /apps/miniconda3/shell/condabin/Conda.psm1
+no change     /apps/miniconda3/shell/condabin/conda-hook.ps1
+no change     /apps/miniconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /apps/miniconda3/etc/profile.d/conda.csh
+no change     /home/luigi.cesarini/.bashrc
+No action taken.
+Inizio: 2024-09-10 17:38:43
+Loaded the UL: 2024-09-10 17:39:57
+Loaded the distance matrix: 2024-09-10 17:39:58
+Make the count inside each grid box: 2024-09-10 17:39:58
+Write to disk: 2024-09-10 17:39:58
+Inizio: 2024-09-10 17:38:43
+Loaded the UL: 2024-09-10 17:39:58
+Loaded the distance matrix: 2024-09-10 17:39:58
+Make the count inside each grid box: 2024-09-10 17:39:59
+Write to disk: 2024-09-10 17:39:59
+Inizio: 2024-09-10 17:38:43
+Loaded the UL: 2024-09-10 17:39:57
+Loaded the distance matrix: 2024-09-10 17:40:02
+Make the count inside each grid box: 2024-09-10 17:40:02
+Write to disk: 2024-09-10 17:40:02
+Tue Sep 10 17:40:15 CEST 2024
+end of job

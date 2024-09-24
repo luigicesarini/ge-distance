@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./get_num_grid_cell.py", line 89, in <module>
+    sns.barplot(data=df_count,
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 2755, in barplot
+    plotter = _BarPlotter(x, y, hue, data, order, hue_order,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 1530, in __init__
+    self.establish_variables(x, y, hue, data, orient,
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 541, in establish_variables
+    raise ValueError(err)
+ValueError: Could not interpret input 'id'
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./get_num_grid_cell.py", line 89, in <module>
+    sns.barplot(data=df_count,
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 2755, in barplot
+    plotter = _BarPlotter(x, y, hue, data, order, hue_order,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 1530, in __init__
+    self.establish_variables(x, y, hue, data, orient,
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 541, in establish_variables
+    raise ValueError(err)
+ValueError: Could not interpret input 'id'
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./get_num_grid_cell.py", line 89, in <module>
+    sns.barplot(data=df_count,
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 2755, in barplot
+    plotter = _BarPlotter(x, y, hue, data, order, hue_order,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 1530, in __init__
+    self.establish_variables(x, y, hue, data, orient,
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/seaborn/categorical.py", line 541, in establish_variables
+    raise ValueError(err)
+ValueError: Could not interpret input 'id'
+srun: error: cn08: task 0: Exited with exit code 1
+srun: error: cn08: task 0: Exited with exit code 1
+srun: error: cn08: task 0: Exited with exit code 1

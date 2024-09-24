@@ -1,0 +1,22 @@
+/usr/bin/id: cannot find name for group ID 2000
+/usr/bin/id: cannot find name for user ID 2019
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 194, in <module>
+    with open(f'src/distance/out/UL_italy_poly_assigned_1152.json', 'r', encoding='utf-8') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/distance/out/UL_italy_poly_assigned_1152.json'
+srun: error: cn04: task 0: Exited with exit code 1
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 153, in <module>
+    print(f"Distance {test_i},{test_j}: {gmfm.prop_dyad(test_i,test_j,gmfm.id_grid,gmfm.dist_mat):.2f}")
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/graph_ensembles/sparse/models/ensembles.py", line 134, in prop_dyad
+    assert (id_grid[i] <= dist_mat.shape[0]) and (id_grid[j] <= dist_mat.shape[1]), "Index out of bounds"
+AssertionError: Index out of bounds
+srun: error: cn04: task 0: Exited with exit code 1
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 194, in <module>
+    with open(f'src/distance/out/UL_italy_poly_assigned_1152.json', 'r', encoding='utf-8') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/distance/out/UL_italy_poly_assigned_1152.json'
+srun: error: cn04: task 0: Exited with exit code 1

@@ -63,12 +63,13 @@ class GraphEnsemble:
 
     """
 
-    @staticmethod
-    @jit(nopython=True)  # pragma: no cover
-    def prop_dyad(i, j):
-        """Define empy dyadic property as it is not always defined."""
-        return 1.0
-
+    
+    # @staticmethod
+    # @jit(nopython=True)  # pragma: no cover
+    # def prop_dyad(i, j):
+    #     """Define empy dyadic property as it is not always defined."""
+        
+    #     return 1.0
 
 class DiGraphEnsemble(GraphEnsemble):
     """General class for DiGraph ensembles.
@@ -105,6 +106,51 @@ class DiGraphEnsemble(GraphEnsemble):
     def __init__(self, *args, **kwargs):
         self.prop_out = empty_index()
         self.prop_in = empty_index()
+        # x= sp.load_npz(f"/mnt/beegfs/lcesarini/ge-distance/src/distance/out/dist_mat_{self.n_ul}.npz").toarray()
+        # x=np.where(x==0,1,x)
+        # self.dist_mat = x
+
+    def get_dist_matrix(self):
+        x= sp.load_npz(f"/mnt/beegfs/lcesarini/ge-distance/src/distance/out/dist_mat_{self.n_ul}.npz").toarray()
+        # x= sp.load_npz(f"/mnt/beegfs/lcesarini/ge-distance/src/distance/out/dist_mat_95.npz").toarray()
+        x=np.where(x==0,1,x)
+        self.dist_mat = x
+
+
+
+    def check_dist_mat(self):
+        print(self.dist_mat)
+
+    @staticmethod
+    @jit(nopython=True)  # pragma: no cover
+    def prop_dyad(i, j, id_grid,dist_mat):
+        """
+        
+        Define empy dyadic property as it is not always defined.
+        
+        The distance is returned in km. 
+        Arguments to implemnt for the selection of the unit.
+        """
+        assert (id_grid[i] <= dist_mat.shape[0]) and (id_grid[j] <= dist_mat.shape[1]), "Index out of bounds"
+
+        raw_distance=dist_mat[id_grid[i].item(),id_grid[j].item()] / 1000
+        # print(1.0 * (1 / np.log(raw_distance)))
+        return 1.0 * (1 / np.log(raw_distance))
+    
+    # @staticmethod
+    # @jit(nopython=True)  # pragma: no cover
+    # def prop_dyad(i, j, id_grid,dist_mat):
+    #     """
+        
+    #     Define empy dyadic property as it is not always defined.
+        
+    #     The distance is returned in km. 
+    #     Arguments to implemnt for the selection of the unit.
+    #     """
+    #     assert (id_grid[i] <= dist_mat.shape[0]) and (id_grid[j] <= dist_mat.shape[1]), "Index out of bounds"
+
+    #     return dist_mat[id_grid[i].item(),id_grid[j].item()] / 1000
+
 
     def expected_num_edges(self, recompute=False):
         """Compute the expected number of edges."""
@@ -119,6 +165,8 @@ class DiGraphEnsemble(GraphEnsemble):
                 self.prop_in,
                 self.prop_dyad,
                 self.selfloops,
+                self.dist_mat,
+                self.id_grid
             )
 
         return self._exp_num_edges
@@ -137,6 +185,8 @@ class DiGraphEnsemble(GraphEnsemble):
                 self.prop_dyad,
                 self.num_vertices,
                 self.selfloops,
+                self.dist_mat,
+                self.id_grid
             )
             self._exp_degree = res[0]
             self._exp_out_degree = res[1]
@@ -404,19 +454,22 @@ class DiGraphEnsemble(GraphEnsemble):
 
     @staticmethod
     @jit(nopython=True)  # pragma: no cover
-    def exp_edges(p_ij, param, prop_out, prop_in, prop_dyad, selfloops):
+    def exp_edges(p_ij, param, prop_out, prop_in, prop_dyad, selfloops, dist_mat, id_grid):
         """Compute the expected number of edges."""
+        # print(param)
         exp_e = 0.0
         for i, p_out_i in enumerate(prop_out):
             for j, p_in_j in enumerate(prop_in):
                 if (i != j) | selfloops:
-                    exp_e += p_ij(param, p_out_i, p_in_j, prop_dyad(i, j))
+                    # print(p_ij(param, p_out_i, p_in_j, prop_dyad(i, j, dist_mat)))
+                    exp_e += p_ij(param, p_out_i, p_in_j, prop_dyad(i, j, id_grid, dist_mat))
 
         return exp_e
 
     @staticmethod
     @jit(nopython=True)  # pragma: no cover
-    def exp_degrees(p_ij, param, prop_out, prop_in, prop_dyad, num_v, selfloops):
+    def exp_degrees(p_ij, param, prop_out, prop_in, prop_dyad, 
+                    num_v, selfloops, dist_mat, id_grid):
         """Compute the expected undirected, in and out degree sequences."""
         exp_d = np.zeros(num_v, dtype=np.float64)
         exp_d_out = np.zeros(num_v, dtype=np.float64)
@@ -428,8 +481,8 @@ class DiGraphEnsemble(GraphEnsemble):
                 p_out_j = prop_out[j]
                 p_in_j = prop_in[j]
                 if i != j:
-                    pij = p_ij(param, p_out_i, p_in_j, prop_dyad(i, j))
-                    pji = p_ij(param, p_out_j, p_in_i, prop_dyad(j, i))
+                    pij = p_ij(param, p_out_i, p_in_j, prop_dyad(i, j, id_grid, dist_mat))
+                    pji = p_ij(param, p_out_j, p_in_i, prop_dyad(j, i, id_grid, dist_mat))
                     p = pij + pji - pij * pji
                     exp_d[i] += p
                     exp_d[j] += p
@@ -438,7 +491,7 @@ class DiGraphEnsemble(GraphEnsemble):
                     exp_d_in[j] += pij
                     exp_d_in[i] += pji
                 elif selfloops:
-                    pii = p_ij(param, p_out_i, p_in_j, prop_dyad(i, j))
+                    pii = p_ij(param, p_out_i, p_in_j, prop_dyad(i, j, id_grid, dist_mat))
                     exp_d[i] += pii
                     exp_d_out[i] += pii
                     exp_d_in[j] += pii
@@ -918,6 +971,7 @@ class MultiDiGraphEnsemble(DiGraphEnsemble):
         g.adj = []
         for i in range(self.num_labels):
             if weights is None:
+
                 rows, cols = self._binary_sample_layer(
                     self.p_ijk,
                     self.param[i],
@@ -925,6 +979,8 @@ class MultiDiGraphEnsemble(DiGraphEnsemble):
                     prop_in[i],
                     self.prop_dyad,
                     self.selfloops,
+                    self.dist_mat,
+                    self.id_grid
                 )
                 vals = np.ones(len(rows), dtype=bool)
             elif weights == "cremb":
@@ -1101,7 +1157,7 @@ class MultiDiGraphEnsemble(DiGraphEnsemble):
 
     @staticmethod
     @jit(nopython=True)  # pragma: no cover
-    def _binary_sample_layer(p_ijk, param, prop_out, prop_in, prop_dyad, selfloops):
+    def _binary_sample_layer(p_ijk, param, prop_out, prop_in, prop_dyad, selfloops, dist_mat, id_grid):
         """Sample from the ensemble."""
         rows = List()
         cols = List()
@@ -1109,7 +1165,13 @@ class MultiDiGraphEnsemble(DiGraphEnsemble):
         for i, p_out_i in zip(prop_out[0], prop_out[1]):
             for j, p_in_j in zip(prop_in[0], prop_in[1]):
                 if (i != j) | selfloops:
-                    p = p_ijk(param, p_out_i, p_in_j, prop_dyad(i, j))
+                    if prop_dyad(i, j, id_grid, dist_mat)==0:
+                        print("prob")
+                        print(i,j)
+                    p = p_ijk(param, p_out_i, p_in_j, prop_dyad(i, j, id_grid, dist_mat))
+                    # print(p)
+                    # print("distamat")
+                    # print(prop_dyad(i, j, dist_mat))
                     if rng.random() < p:
                         rows.append(i)
                         cols.append(j)

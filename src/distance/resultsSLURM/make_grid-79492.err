@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./make_grid.py", line 93, in <module>
+    qtree.draw(ax)
+TypeError: QuadTree.draw() missing 1 required positional argument: 'n_ul'
+srun: error: cn08: task 0: Exited with exit code 1
+srun: Job 79492 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Job 79492 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Step created for job 79492
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./make_grid.py", line 93, in <module>
+    qtree.draw(ax,n_ul=N_UL_SQUARE)
+    ^^^^^^^^^^^^^^
+TypeError: QuadTree.draw() missing 1 required positional argument: 'n_ul'
+srun: Job 79492 step creation still disabled, retrying (Requested nodes are busy)
+srun: error: cn08: task 0: Exited with exit code 1
+srun: Job 79492 step creation still disabled, retrying (Requested nodes are busy)
+srun: Step created for job 79492

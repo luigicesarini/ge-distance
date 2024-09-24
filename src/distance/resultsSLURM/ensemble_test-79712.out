@@ -1,0 +1,34 @@
+start of job
+eliminating results slurm older than 21 days
+2024-09-12 11:29:33
+/mnt/beegfs/lcesarini/ge-distance/src/distance
+no change     /apps/miniconda3/condabin/conda
+no change     /apps/miniconda3/bin/conda
+no change     /apps/miniconda3/bin/conda-env
+no change     /apps/miniconda3/bin/activate
+no change     /apps/miniconda3/bin/deactivate
+no change     /apps/miniconda3/etc/profile.d/conda.sh
+no change     /apps/miniconda3/etc/fish/conf.d/conda.fish
+no change     /apps/miniconda3/shell/condabin/Conda.psm1
+no change     /apps/miniconda3/shell/condabin/conda-hook.ps1
+no change     /apps/miniconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /apps/miniconda3/etc/profile.d/conda.csh
+no change     /home/luigi.cesarini/.bashrc
+No action taken.
+
+-------------------
+
+-------------------
+
+-------------------
+
+10 4 sparse
+
+10 4 sparse
+
+10 4 sparse
+We're going super fast
+We're going super fast
+We're going super fast
+Thu Sep 12 11:29:37 CEST 2024
+end of job

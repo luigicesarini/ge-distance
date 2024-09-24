@@ -1,0 +1,38 @@
+/usr/bin/id: cannot find name for group ID 2000
+/usr/bin/id: cannot find name for user ID 2019
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 106, in <module>
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 106, in <module>
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 106, in <module>
+    arr_ul=load_npz(f'/src/distance/out/arr_input_ul_{n_grid}.npz')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    arr_ul=load_npz(f'/src/distance/out/arr_input_ul_{n_grid}.npz')
+    arr_ul=load_npz(f'/src/distance/out/arr_input_ul_{n_grid}.npz')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/scipy/sparse/_matrix_io.py", line 125, in load_npz
+    with np.load(file, **PICKLE_KWARGS) as loaded:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/scipy/sparse/_matrix_io.py", line 125, in load_npz
+    with np.load(file, **PICKLE_KWARGS) as loaded:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/numpy/lib/npyio.py", line 405, in load
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/scipy/sparse/_matrix_io.py", line 125, in load_npz
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/numpy/lib/npyio.py", line 405, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    with np.load(file, **PICKLE_KWARGS) as loaded:
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/src/distance/out/arr_input_ul_925.npz'
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/src/distance/out/arr_input_ul_9174.npz'
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/numpy/lib/npyio.py", line 405, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/src/distance/out/arr_input_ul_95.npz'
+srun: error: cn04: task 0: Exited with exit code 1
+srun: error: cn04: task 0: Exited with exit code 1
+srun: error: cn04: task 0: Exited with exit code 1

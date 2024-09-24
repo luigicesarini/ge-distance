@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 124, in <module>
+    gmfm=MFM(
+         ^^^^
+  File "/home/luigi.cesarini/.conda/envs/my_xclim_env/lib/python3.11/site-packages/graph_ensembles/sparse/models/fitness.py", line 413, in __init__
+    raise ValueError("Illegal argument passed: " + name)
+ValueError: Illegal argument passed: n_ul
+srun: error: cn08: task 0: Exited with exit code 1

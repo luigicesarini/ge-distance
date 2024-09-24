@@ -7,7 +7,7 @@ import scipy.sparse as sp
 from . import graphs
 import numpy as np
 from numba import jit
-from math import isinf
+from math import isinf,exp
 from numba.typed import List
 from math import log
 from math import log1p
@@ -360,6 +360,10 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         Selects if the model has a parameter for each layer or just one.
     selfloops: bool
         Selects if self loops (connections from i to i) are allowed.
+    id_grid: np.ndarray
+        The vector containing the id of the square where each UL belongs.
+    n_ul: int
+        Number of local unit inside each square of the discretization.
 
     Methods
     -------
@@ -378,6 +382,7 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         super().__init__(*args, **kwargs)
 
         # If an argument is passed then it must be a graph
+        print(len(args))
         if len(args) > 0:
             if isinstance(args[0], graphs.MultiDiGraph):
                 g = args[0]
@@ -406,6 +411,8 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
             "param",
             "selfloops",
             "per_label",
+            "id_grid",
+            "n_ul"
         ]
         for name in kwargs:
             if name not in allowed_arguments:
@@ -575,6 +582,28 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         if "per_label" in kwargs:
             self.per_label = kwargs["per_label"]
 
+        if hasattr(self, "id_grid"):
+            if not isinstance(self.id_grid, np.ndarray):
+                raise ValueError("The id grid must be an array.")
+            if not (len(self.id_grid) == self.num_vertices):
+                raise ValueError("The id grid must have the same length as the number of vertices.")
+            else:
+                self.id_grid = kwargs["id_grid"]
+        else:
+            raise ValueError("If distance is in prop_dyad,the array of id grid must be set.")
+
+        if hasattr(self, "n_ul"):
+            if not isinstance(self.n_ul, int):
+                raise ValueError("The number of local unit inside each square of the discretization.")
+            # todo: automatise this check
+            if not (self.n_ul) in [95,925,9174]:
+                raise ValueError(f"The number of local unit must be one of 95,925,9174")
+            else:
+                self.n_ul = kwargs["n_ul"]
+        else:
+            raise ValueError("If distance is in prop_dyad,the array of id grid must be set.")
+
+
     def fit(
         self,
         x0=None,
@@ -653,7 +682,6 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
                     p_out = prop_out[i]
                     p_in = prop_in[i]
                     num_e = self.num_edges_label[i]
-
                     sol = monotonic_newton_solver(
                         np.array([x0[i]]),
                         lambda x: self.density_fit_layer(x[0], p_out, p_in),
@@ -666,7 +694,7 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
                         full_return=True,
                         verbose=verbose,
                     )
-
+                    # print(sol)
                     # Update results and check convergence
                     self.param[i] = sol.x[0]
                     self.solver_output[i] = sol
@@ -676,9 +704,11 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
                         warnings.warn(msg, UserWarning)
             else:
                 # Ensure that num_edges is set
+                # print("fucking hell we are here")
+                # print(x0[0:1])
+                # print("pritnato x0")
                 if not hasattr(self, "num_edges"):
                     raise ValueError("Number of edges must be set for density solver.")
-
                 sol = monotonic_newton_solver(
                     x0[0:1],
                     self.density_fit_fun,
@@ -691,7 +721,6 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
                     full_return=True,
                     verbose=verbose,
                 )
-
                 # Update results and check convergence
                 self.param = np.array([sol.x[0]] * self.num_labels)
                 self.solver_output = sol
@@ -709,6 +738,7 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         """Return the objective function value and the Jacobian
         for a given value of delta.
         """
+        # print(f"fucking delta: {delta}")
         f, jac = self.exp_edges_f_jac(
             self.p_jac_ij, delta, self.prop_out, self.prop_in, self.selfloops
         )
@@ -739,7 +769,7 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
                     p_tmp, jac_tmp = p_jac_ij(param, p_out_i, p_in_j)
                     f += p_tmp
                     jac += jac_tmp
-
+        # print(f)
         return f, jac
 
     @staticmethod
@@ -772,6 +802,10 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         j = 0
         val = np.float64(1.0)
         jac = np.float64(0.0)
+        # print("\n---------PROP IN----------\n")
+        # print(prop_in)
+        # print("\n---------PROP OUT----------\n")
+        # print(prop_out)
 
         # Loop over all possibilities
         x_lbl = prop_out[0]
@@ -800,6 +834,7 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
             else:
                 j += 1
 
+        # print(1 - val, val * jac)
         return 1 - val, val * jac
 
     @staticmethod
@@ -867,16 +902,21 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         i = 0
         j = 0
         val = 1.0
-
         # Loop over all possibilities
         x_lbl = prop_out[0]
         x_val = prop_out[1]
         y_lbl = prop_in[0]
         y_val = prop_in[1]
+        # print(prop_dyad(i, j, dist_mat ))
         while i < len(x_lbl) and j < len(y_lbl):
+            # print(x_lbl[i])
+            # print(y_lbl[j])
             if x_lbl[i] == y_lbl[j]:
                 if (d[x_lbl[i]] != 0) and (x_val[i] != 0) and (y_val[j] != 0):
-                    tmp = d[x_lbl[i]] * x_val[i] * y_val[j]
+                    # print("\ntmp")
+
+                    tmp = d[x_lbl[i]] * x_val[i] * y_val[j] * exp( 1 / prop_dyad )
+                    # print(tmp)
                     if isinf(tmp):
                         return 1.0
                     else:
@@ -887,6 +927,8 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
                 i += 1
             else:
                 j += 1
+# 
+        # print(prop_dyad,1-val)
 
         return 1 - val
 
@@ -968,8 +1010,8 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         """
         if (x_i == 0) or (y_j == 0) or (d == 0):
             return 0.0
-
-        tmp = d * x_i * y_j
+        # print(z_ij)
+        tmp = d * x_i * y_j * 1 / z_ij
         if isinf(tmp):
             return 1.0
         else:
