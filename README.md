@@ -38,7 +38,6 @@ MISSING THE NUMBER OF EMPLOY PER FIRM that I will add to the input.
 TO COMPLETE ONCE FINISHED
 
 **Clone the repository**
-.. code-block:: bash
 
     git clone https://github.com/lcesarini/ge-distance.git
     cd ge-distance
@@ -46,8 +45,6 @@ TO COMPLETE ONCE FINISHED
 
 ## Usage
 Some examples to put
-
-.. code-block:: python
 
     python your_script.py --arg1 value --arg2 value
 
