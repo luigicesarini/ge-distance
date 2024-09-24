@@ -4,7 +4,8 @@ The ge-distance package builds upon the graph ensemble package, a project by a p
 The graph-ensemble repository can be found at:
 [https://github.com/LeonardoIalongo/graph-ensembles](https://github.com/LeonardoIalongo/graph-ensembles)
 
-![](https://github.com/luigicesarini/ge-distance/blob/master/src/distance/tmp/graph_sampled_10_40_ensemble_test.gif)
+<img src="https://github.com/luigicesarini/ge-distance/blob/master/src/distance/tmp/graph_sampled_10_40_ensemble_test.gif" alt="Network GIF" align="right" style="height: 50%; width:40%;border:solid 1px #555"/>
+![]()
 
 
 ## Project Description
