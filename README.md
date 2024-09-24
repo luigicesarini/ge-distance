@@ -4,11 +4,13 @@ The ge-distance package builds upon the graph ensemble package, a project by a p
 The graph-ensemble repository can be found at:
 [https://github.com/LeonardoIalongo/graph-ensembles](https://github.com/LeonardoIalongo/graph-ensembles)
 
-
+![](https://github.com/luigicesarini/ge-distance/blob/master/src/distance/tmp/graph_sampled_10_40_ensemble_test.gif)
 
 
 ## Project Description
 This project aims at reproducing a firm-to-firm network for the entire italian country, introducing the distance as a property that influences the construction of such network.
+
+
 
 ## TODO List
 List of the taks envisioned for bringing to completion the project:
@@ -20,7 +22,7 @@ List of the taks envisioned for bringing to completion the project:
 ## Features
 The repository contains a module, __distance__, where starting from the locations of the firms, compute the distance matrix among firms, in two steps:
 
-1. Discretize the interested area, dividing it into square with similar firm density inside based on a [quadtree](https://en.wikipedia.org/wiki/Quadtree) approach. (LINK TO EXAMPLE IMAGE)
+1. Discretize the interested area, dividing it into square with similar firm density inside based on a [quadtree](https://en.wikipedia.org/wiki/Quadtree) approach. [Example grid](https://github.com/luigicesarini/ge-distance/blob/master/src/distance/tmp/grid_925.png)
 2. Compute the distance (geodetic for now, street distance when psosible) between each cell pair, and attach to each firm, the corresponding _cell_id_.
 
 The _cell_id_ is later used to retrieve the distance for each i,j pair of firms from the distance matrix, when creating the ensemble.
