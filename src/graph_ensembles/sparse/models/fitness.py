@@ -382,7 +382,7 @@ class MultiFitnessModel(MultiDiGraphEnsemble):
         super().__init__(*args, **kwargs)
 
         # If an argument is passed then it must be a graph
-        print(len(args))
+        # print(len(args))
         if len(args) > 0:
             if isinstance(args[0], graphs.MultiDiGraph):
                 g = args[0]
