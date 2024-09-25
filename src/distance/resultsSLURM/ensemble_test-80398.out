@@ -1,0 +1,48 @@
+start of job
+eliminating results slurm older than 21 days
+2024-09-25 11:44:13
+/mnt/beegfs/lcesarini/ge-distance/src/distance
+no change     /apps/miniconda3/condabin/conda
+no change     /apps/miniconda3/bin/conda
+no change     /apps/miniconda3/bin/conda-env
+no change     /apps/miniconda3/bin/activate
+no change     /apps/miniconda3/bin/deactivate
+no change     /apps/miniconda3/etc/profile.d/conda.sh
+no change     /apps/miniconda3/etc/fish/conf.d/conda.fish
+no change     /apps/miniconda3/shell/condabin/Conda.psm1
+no change     /apps/miniconda3/shell/condabin/conda-hook.ps1
+no change     /apps/miniconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /apps/miniconda3/etc/profile.d/conda.csh
+no change     /home/luigi.cesarini/.bashrc
+No action taken.
+
+-------------------
+
+2000 3 sparse False
+We're going super fast
+
+-------------------
+
+2000 6000 35
+
+-------------------
+
+0
+post ensemble
+Number of local unit:None
+[[1.00000000e+00 3.29585188e+05 5.27515005e+05 ... 1.46898456e+06
+  1.46435560e+06 1.40815600e+06]
+ [3.29585188e+05 1.00000000e+00 4.11880667e+05 ... 1.47819898e+06
+  1.49191391e+06 1.46486959e+06]
+ [5.27515005e+05 4.11880667e+05 1.00000000e+00 ... 1.07187494e+06
+  1.09071113e+06 1.07586785e+06]
+ ...
+ [1.46898456e+06 1.47819898e+06 1.07187494e+06 ... 1.00000000e+00
+  8.23962970e+04 2.14009293e+05]
+ [1.46435560e+06 1.49191391e+06 1.09071113e+06 ... 8.23962970e+04
+  1.00000000e+00 1.36540757e+05]
+ [1.40815600e+06 1.46486959e+06 1.07586785e+06 ... 2.14009293e+05
+  1.36540757e+05 1.00000000e+00]]
+Distance 380,1796: 0.21
+Wed Sep 25 11:44:57 CEST 2024
+end of job

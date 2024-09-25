@@ -1,0 +1,8 @@
+/usr/bin/id: cannot find name for group ID 2000
+/usr/bin/id: cannot find name for user ID 2019
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 154, in <module>
+    print(f"Distance {test_i},{test_j}: {gmfm.prop_dyad(test_i,test_j,gmfm.id_grid,gmfm.dist_mat):.2f}")
+                                                                                   ^^^^^^^^^^^^^
+AttributeError: 'MultiFitnessModel' object has no attribute 'dist_mat'
+srun: error: cn02: task 0: Exited with exit code 1

@@ -134,11 +134,11 @@ gmfm=MFM(
         # selfloops=1,
         # per_label=1,
     )
-print("post ensemble")
 
-
-print(f"Number of local unit:{gmfm.get_dist_matrix()}")
-print(gmfm.dist_mat)
+#get the distance matrix
+gmfm.get_dist_matrix()
+# print(f"Number of local unit:{gmfm.get_dist_matrix()}")
+# print(gmfm.dist_mat)
 
 
 test_i=np.random.randint(0,N_VERT)
@@ -151,11 +151,13 @@ if test_i==test_j:
 # print(f"\n---------------------\n")
 
 
+
+print("\n-------------------\n")
 print(f"Distance {test_i},{test_j}: {gmfm.prop_dyad(test_i,test_j,gmfm.id_grid,gmfm.dist_mat):.2f}")
-# print(f"\n---------------------\n")
+print(f"\n---------------------\n")
 # print("post computation distance")
 
-gmfm.fit(verbose=False)
+# gmfm.fit(verbose=False)
 
 # dir(gmfm.solver_output)
 
@@ -177,8 +179,8 @@ gmfm.fit(verbose=False)
 #     if "__" not in ele:
 #         print(ele) 
 
-x=gmfm.sample()
-sampled_nx=x.to_networkx()
+# x=gmfm.sample()
+# sampled_nx=x.to_networkx()
 
 # print(f"N° vertices: {N_VERT}")
 # print(f"N° edges: {N_EDGE}")
