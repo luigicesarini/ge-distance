@@ -1,5 +1,6 @@
 # GE-Distance
 <img src="https://github.com/luigicesarini/ge-distance/blob/master/src/distance/tmp/graph_sampled_100_300_ensemble_test.gif" alt="Network GIF" align="right" style="height: 50%; width:40%;border:solid 1px #555; float: left; margin-right: 15px;"/>
+
 The ge-distance package builds upon the graph ensemble package, a project by a project by [Leonardo Niccolò Ialongo](https://datasciencephd.eu/students/leonardo-niccol%C3%B2-ialongo/) and [Emiliano Marchese](https://www.imtlucca.it/en/emiliano.marchese/), under the supervision of [Diego Garlaschelli](https://networks.imtlucca.it/people/diego), which contains a set of methods to build fitness based graph ensembles from marginal information.
 
 The graph-ensemble repository can be found at:
