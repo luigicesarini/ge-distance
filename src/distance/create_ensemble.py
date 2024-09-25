@@ -18,7 +18,6 @@ from scipy.sparse import csr_array,csc_array,save_npz,load_npz
 sys.path.append("/mnt/beegfs/lcesarini/ge-distance/src")
 
 os.chdir(f"/mnt/beegfs/lcesarini/ge-distance/")
-sys.path
 from graph_ensembles.sparse import MultiFitnessModel as MFM
 
 import argparse
@@ -110,7 +109,6 @@ elif SLOW=="sparse":
     sample_nodes=np.random.randint(0,arr_ul.shape[0],NODES)
     arr_ul=arr_ul[sample_nodes]
 
-
     N_VERT=arr_ul.shape[0]
     N_EDGE=arr_ul.shape[0] * COEFF_EDGES
     N_SECT= np.unique(arr_ul.toarray()[:,1]).shape[0]
@@ -171,7 +169,7 @@ gmfm.fit(verbose=False)
 # print(f"expected_out_degree_by_label:{gmfm.expected_out_degree_by_label()}")
 # print(f"expected_in_degree:{gmfm.expected_in_degree()}")
 # print(f"expected_in_degree_by_label:{gmfm.expected_in_degree_by_label()}")
-print(f"expected_num_edges:{gmfm.expected_num_edges()}")
+# print(f"expected_num_edges:{gmfm.expected_num_edges()}")
 # print(f"\n---------------------\n")
 # print(f"expected_num_edges_label:{gmfm.expected_num_edges_label()}")
 

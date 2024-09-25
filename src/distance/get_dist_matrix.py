@@ -152,8 +152,8 @@ else:
         lat.append(f['properties']['lat'])
         index.append(f['properties']['index'])
 
-    centroids_grid= compute_centroids(grid[grid.index.isin(index)])
-    # centroids_grid=compute_centroids(grid)
+    # centroids_grid= compute_centroids(grid[grid.index.isin(index)])
+    centroids_grid=compute_centroids(grid)
     dist_mat=compute_distance_matrix(centroids_grid)
 
     sp.sparse.save_npz(f'/mnt/beegfs/lcesarini/ge-distance/src/distance/out/dist_mat_{grid.shape[0]}.npz',dist_mat)

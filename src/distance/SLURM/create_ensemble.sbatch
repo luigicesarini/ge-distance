@@ -4,11 +4,11 @@
 #SBATCH -o "resultsSLURM/%x-%j.out"
 #SBATCH --partition=cpuq
 #SBATCH -N 1
-#SBATCH -n 3
-#SBATCH --cpus-per-task=20
+#SBATCH -n 1
+#SBATCH --cpus-per-task=64
 #SBATCH --time=120:00:00
 #SBATCH --mem-per-cpu=256GB
-#SBATCH --nodelist=cn08
+#SBATCH --nodelist=cn02
 #SBATCH --account=PR_climate
 
 echo "start of job"
@@ -29,7 +29,7 @@ conda init bash
 source /home/luigi.cesarini/.bashrc
 conda activate my_xclim_env
 
-srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./create_ensemble.py --speed 'sparse' -nodes 10 -ce 4 -jn $SLURM_JOB_NAME -ng 95 &
+srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./create_ensemble.py --speed 'sparse' -nodes 100 -ce 3 -jn $SLURM_JOB_NAME -ng 95 -pm 
 # srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./create_ensemble.py --speed 'sparse' -nodes 10 -ce 4 -jn $SLURM_JOB_NAME -ng 925 -pm &
 # srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./create_ensemble.py --speed 'sparse' -nodes 10 -ce 4 -jn $SLURM_JOB_NAME -ng 9174 -pm &
 

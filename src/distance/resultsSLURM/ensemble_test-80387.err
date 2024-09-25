@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/mnt/beegfs/lcesarini/ge-distance/src/distance/./create_ensemble.py", line 174, in <module>
+    print(f"expected_num_edges:{gmfm.expected_num_edges()}")
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/beegfs/lcesarini/ge-distance/src/graph_ensembles/sparse/models/ensembles.py", line 161, in expected_num_edges
+    self._exp_num_edges = self.exp_edges(
+                          ^^^^^^^^^^^^^^^
+  File "/mnt/beegfs/lcesarini/ge-distance/src/graph_ensembles/sparse/models/ensembles.py", line 134, in prop_dyad
+    assert (id_grid[i] <= dist_mat.shape[0]) and (id_grid[j] <= dist_mat.shape[1]), "Index out of bounds"
+AssertionError: Index out of bounds
+srun: error: cn01: task 0: Exited with exit code 1

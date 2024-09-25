@@ -67,13 +67,13 @@ gdf=json.loads(r)
 row_id=[]
 sectors=[]
 index_grid=[]
-
+employees=[]
 
 for f in (gdf['features']):
     row_id.append(int(f['properties']['row_id']))
     index_grid.append(int(f['properties']['index']))
     sectors.append(f['properties']['Sectors'])
-
+    employees.append(int(f['properties']['addetti_ul']))
 
 # Step 1: Create a mapping of unique strings to integers
 unique_strings = list(set(sectors))
@@ -86,6 +86,7 @@ arr_ul=np.concatenate([
     np.array(row_id).reshape(-1,1),
     np.array(sector_integers).reshape(-1,1),
     np.array(index_grid).reshape(-1,1),
+    np.array(employees).reshape(-1,1)
     ],axis=1)
 
 
@@ -94,8 +95,3 @@ save_npz(f'ge-distance/src/distance/out/arr_input_ul_{n_grid}.npz', arr_ul)
 
 
 
-
-
-"""
-
-"""
