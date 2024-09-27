@@ -29,9 +29,9 @@ conda init bash
 source /home/luigi.cesarini/.bashrc
 conda activate my_xclim_env
 
-srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./get_matrix_input.py --n_grid 95 &
-srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./get_matrix_input.py --n_grid 925 &
-srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./get_matrix_input.py --n_grid 9174 &
+srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./get_matrix_input.py --n_grid 95 
+# srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./get_matrix_input.py --n_grid 925 &
+# srun --ntasks=1 --nodes=1 --cpus-per-task=$SLURM_CPUS_PER_TASK python ./get_matrix_input.py --n_grid 9174 &
 
 wait
 date

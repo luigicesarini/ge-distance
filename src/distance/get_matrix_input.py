@@ -52,7 +52,7 @@ n_grid=args.n_grid
 os.chdir("/mnt/beegfs/lcesarini/")
 
 """
-Creation of a np.array with shape (n_ul,3) where the 3 columns are: 
+Creation of a np.array with shape (n_ul,4) where the 4 columns are: 
 
 - ID_UL: np.int unique id representing the local unit
 - SECTOR: np.int representing the sector
